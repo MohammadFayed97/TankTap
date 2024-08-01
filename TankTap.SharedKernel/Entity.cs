@@ -121,6 +121,7 @@ public abstract class Entity<TId> : BaseObject, IEntity<TId>, IDomainEntity, IEq
 
     public static bool operator !=(Entity<TId>? left, Entity<TId>? right)
         => !Equals(left, right);
+
     public IReadOnlyCollection<BaseDomainEvent> Events => _events.AsReadOnly();
     protected void AddEvent<TDomainEvent>(TDomainEvent @event)
         where TDomainEvent : BaseDomainEvent => _events.Add(@event);

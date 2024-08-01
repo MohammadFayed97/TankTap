@@ -1,11 +1,8 @@
 ﻿using MediatR;
-using TankTap.SharedKernel;
 using TankTap.Stations.Application.Constants;
 using TankTap.Stations.Domain.CityAggregate;
 using TankTap.Stations.Domain.PointOfSaleTypeAggregate;
-using TankTap.Stations.Domain.PointOfSaleTypeAggregate.Specifications;
 using TankTap.Stations.Domain.ProductAggregate;
-using TankTap.Stations.Domain.ProductAggregate.Specifications;
 using TankTap.Stations.Domain.Results;
 using TankTap.Stations.Domain.StationAggregate;
 using static TankTap.Stations.Application.Stations.Add.AddStationCommand;
@@ -15,15 +12,15 @@ namespace TankTap.Stations.Application.Stations.Add;
 internal class AddStationCommandHandler : IRequestHandler<AddStationCommand, IResult>
 {
     private readonly IStationRepository _stationRepository;
-    private readonly IRepository<City> _cityRepository;
-    private readonly IRepository<Product> _productRepository;
-    private readonly IRepository<PointOfSaleType> _posTypeRepository;
+    private readonly ICityRepository _cityRepository;
+    private readonly IProductRepository _productRepository;
+    private readonly IPointOfSaleTypeRepository _posTypeRepository;
 
     public AddStationCommandHandler(
             IStationRepository stationRepository,
-            IRepository<City> cityRepository,
-            IRepository<Product> productRepository,
-            IRepository<PointOfSaleType> posTypeRepository)
+            ICityRepository cityRepository,
+            IProductRepository productRepository,
+            IPointOfSaleTypeRepository posTypeRepository)
     {
         _stationRepository = stationRepository;
         _cityRepository = cityRepository;
@@ -65,7 +62,7 @@ internal class AddStationCommandHandler : IRequestHandler<AddStationCommand, IRe
     private async Task<IResult<POSDevice[]>> TryGetPOSDevicesToAdd(List<PointOfSaleDevice> posDevices)
     {
         var selectedPosTypesIds = posDevices.Select(e => e.LKPointOfSaleId).ToArray();
-        var posTypes = await _posTypeRepository.ListAsync(new GetPOSTypesListByIds(selectedPosTypesIds));
+        var posTypes = await _posTypeRepository.GetPOSTypesListByIds(selectedPosTypesIds);
         if (posTypes.Count != selectedPosTypesIds.Length)
             return Result<POSDevice[]>.Fail("POS Type not found.");
 
@@ -81,7 +78,7 @@ internal class AddStationCommandHandler : IRequestHandler<AddStationCommand, IRe
     {
         Dictionary<int, decimal> selectedProductsDictionary = priceInfos.ToDictionary(e => e.LKProductId, e => e.Price);
         int[] selectedProductIds = priceInfos.Select(e => e.LKProductId).ToArray();
-        List<Product> selectedProducts = await _productRepository.ListAsync(new GetProductsByIdsSpec(selectedProductIds), cancellationToken);
+        List<Product> selectedProducts = await _productRepository.GetProductsByIdsAsync(selectedProductIds, cancellationToken);
 
         if (selectedProducts.Count != selectedProductIds.Length)
             return Result<Dictionary<Product, decimal>>.Fail(MessagesAr.ProductNotFount);

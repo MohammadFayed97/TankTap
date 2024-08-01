@@ -19,10 +19,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-
-builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-builder.Services.AddScoped(typeof(EfRepository<>));
+//builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var app = builder.Build();
 
@@ -33,7 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseExceptionHandler();
+//app.UseExceptionHandler();
 app.UseCors("AllowOrigin");
 app.UseHttpsRedirection();
 

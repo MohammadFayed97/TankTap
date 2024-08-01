@@ -28,10 +28,12 @@ namespace TankTap.Stations.Infrastructure.Persistence.Configurations.StationConf
             {
                 ownedBuilder
                     .Property(e => e.Latitude)
-                    .HasColumnName(TankTabDbContextSchema.StationSchema.Latitude);
+                    .HasColumnName(TankTabDbContextSchema.StationSchema.Latitude)
+                    .IsRequired(false);
                 ownedBuilder
                     .Property(e => e.Longitude)
-                    .HasColumnName(TankTabDbContextSchema.StationSchema.Longitude);
+                    .HasColumnName(TankTabDbContextSchema.StationSchema.Longitude)
+                    .IsRequired(false);
             });
 
             builder.OwnsOne(e => e.Address, ownedBuilder =>

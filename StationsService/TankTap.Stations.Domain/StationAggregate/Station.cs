@@ -3,6 +3,7 @@ using TankTap.SharedKernel;
 using TankTap.Stations.Domain.Commons;
 using TankTap.Stations.Domain.ProductAggregate;
 using TankTap.Stations.Domain.Results;
+using TankTap.Stations.Domain.StationAggregate.Events;
 
 namespace TankTap.Stations.Domain.StationAggregate;
 
@@ -19,6 +20,8 @@ public sealed class Station : Entity<int>, IAggregateRoot
         Code = code;
         ERPCode = erpCode;
         Address = address;
+
+        AddEvent(new StationCreatedEvent(Id));
     }
     private Station() { } // EF
 

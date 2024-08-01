@@ -2,12 +2,10 @@
 
 namespace TankTap.Stations.Domain.StationAggregate;
 
-public interface IStationRepository : IRepository<Station>
+public interface IStationRepository
 {
     Task<bool> IsAnyPOSDevicesExists(POSDeviceModel[] posDeviceModels, CancellationToken cancellationToken = default);
-}
-public class POSDeviceModel
-{
-    public string POSId { get; set; }
-    public string AndroidId { get; set; }
+    Task<bool> CheckIfStationCodeExistsBefore(string code, CancellationToken cancellationToken = default);
+    Task<bool> CheckIfStationERPCodeExistsBefore(string erpCode, CancellationToken cancellationToken = default);
+    Task AddAsync(Station station, CancellationToken cancellationToken = default);
 }

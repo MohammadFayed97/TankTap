@@ -13,7 +13,7 @@ public class AddStationCommand : IRequest<IResult>
     public List<PriceInfo> PricesInfo { get; set; }
     public List<TankInfo> TanksInfo { get; set; }
     public List<PumpInfo> PumpsInfo { get; set; }
-    public List<PointOfSaleDevice> PosInfo { get; set; }
+    public List<PointOfSaleDevice>? PosInfo { get; set; }
     public class PriceInfo
     {
         public int LKProductId { get; set; }
