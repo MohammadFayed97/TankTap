@@ -1,0 +1,6 @@
+@TankTap.API_HostAddress = http://localhost:5047
+
+GET {{TankTap.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
