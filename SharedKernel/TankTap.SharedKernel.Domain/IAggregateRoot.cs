@@ -1,4 +1,4 @@
-﻿namespace TankTap.SharedKernel;
+﻿namespace TankTap.SharedKernel.Domain;
 
 /// <summary>
 /// This marker interface only to aggregate root entities
