@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SharedKernel\TankTap.SharedKernel.Application\TankTap.SharedKernel.Application.csproj" />
+    <ProjectReference Include="..\..\Adminstration\TankTap.Admistration.IntegrationEvents\TankTap.Admistration.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\TankTap.Invoices.Domain\TankTap.Invoices.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
