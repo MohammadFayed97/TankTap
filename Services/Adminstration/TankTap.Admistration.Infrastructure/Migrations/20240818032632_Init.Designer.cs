@@ -6,13 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TankTap.Admistration.Infrastructure.Persistence;
 
-
 #nullable disable
 
 namespace TankTap.Admistration.Infrastructure.Migrations
 {
-	[DbContext(typeof(AdminstartionContext))]
-    [Migration("20240816135044_Init")]
+    [DbContext(typeof(AdminstartionContext))]
+    [Migration("20240818032632_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -20,13 +19,13 @@ namespace TankTap.Admistration.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("stations")
+                .HasDefaultSchema("adminstration")
                 .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TankTap.Stations.Domain.CityAggregate.City", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.CityAggregate.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,10 +40,10 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                     b.HasIndex("RegionId");
 
-                    b.ToTable("Cities", "stations");
+                    b.ToTable("Cities", "adminstration");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.PointOfSaleTypeAggregate.PointOfSaleType", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.PointOfSaleTypeAggregate.PointOfSaleType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -54,10 +53,10 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PointOfSaleTypes", "stations");
+                    b.ToTable("PointOfSaleTypes", "adminstration");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.ProductAggregate.Product", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.ProductAggregate.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -78,10 +77,10 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", "stations");
+                    b.ToTable("Products", "adminstration");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.RegionAggregate.Region", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.RegionAggregate.Region", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,10 +90,10 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Regions", "stations");
+                    b.ToTable("Regions", "adminstration");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.Pump", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.Pump", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,10 +116,10 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                     b.HasIndex("TankId");
 
-                    b.ToTable("Pumps", "stations");
+                    b.ToTable("Pumps", "adminstration");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.Station", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.Station", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,10 +141,10 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stations", "stations");
+                    b.ToTable("Stations", "adminstration");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.StationProduct", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.StationProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,10 +168,10 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                     b.HasIndex("StationId");
 
-                    b.ToTable("StationProducts", "stations");
+                    b.ToTable("StationProducts", "adminstration");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.Tank", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.Tank", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -199,18 +198,18 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                     b.HasIndex("StationId");
 
-                    b.ToTable("Tanks", "stations");
+                    b.ToTable("Tanks", "adminstration");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.CityAggregate.City", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.CityAggregate.City", b =>
                 {
-                    b.HasOne("TankTap.Stations.Domain.RegionAggregate.Region", null)
+                    b.HasOne("TankTap.Admistration.Domain.RegionAggregate.Region", null)
                         .WithMany("Cities")
                         .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("TankTap.Stations.Domain.LocalizedName", "Name", b1 =>
+                    b.OwnsOne("TankTap.SharedKernel.Domain.LocalizedName", "Name", b1 =>
                         {
                             b1.Property<int>("CityId")
                                 .HasColumnType("int");
@@ -237,7 +236,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                             b1.HasKey("CityId");
 
-                            b1.ToTable("Cities", "stations");
+                            b1.ToTable("Cities", "adminstration");
 
                             b1.WithOwner()
                                 .HasForeignKey("CityId");
@@ -247,9 +246,9 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.PointOfSaleTypeAggregate.PointOfSaleType", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.PointOfSaleTypeAggregate.PointOfSaleType", b =>
                 {
-                    b.OwnsOne("TankTap.Stations.Domain.LocalizedName", "Name", b1 =>
+                    b.OwnsOne("TankTap.SharedKernel.Domain.LocalizedName", "Name", b1 =>
                         {
                             b1.Property<int>("PointOfSaleTypeId")
                                 .HasColumnType("int");
@@ -276,7 +275,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                             b1.HasKey("PointOfSaleTypeId");
 
-                            b1.ToTable("PointOfSaleTypes", "stations");
+                            b1.ToTable("PointOfSaleTypes", "adminstration");
 
                             b1.WithOwner()
                                 .HasForeignKey("PointOfSaleTypeId");
@@ -286,9 +285,9 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.ProductAggregate.Product", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.ProductAggregate.Product", b =>
                 {
-                    b.OwnsOne("TankTap.Stations.Domain.LocalizedName", "Name", b1 =>
+                    b.OwnsOne("TankTap.SharedKernel.Domain.LocalizedName", "Name", b1 =>
                         {
                             b1.Property<int>("ProductId")
                                 .HasColumnType("int");
@@ -315,7 +314,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                             b1.HasKey("ProductId");
 
-                            b1.ToTable("Products", "stations");
+                            b1.ToTable("Products", "adminstration");
 
                             b1.WithOwner()
                                 .HasForeignKey("ProductId");
@@ -325,9 +324,9 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.RegionAggregate.Region", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.RegionAggregate.Region", b =>
                 {
-                    b.OwnsOne("TankTap.Stations.Domain.LocalizedName", "Name", b1 =>
+                    b.OwnsOne("TankTap.SharedKernel.Domain.LocalizedName", "Name", b1 =>
                         {
                             b1.Property<int>("RegionId")
                                 .HasColumnType("int");
@@ -354,7 +353,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                             b1.HasKey("RegionId");
 
-                            b1.ToTable("Regions", "stations");
+                            b1.ToTable("Regions", "adminstration");
 
                             b1.WithOwner()
                                 .HasForeignKey("RegionId");
@@ -364,18 +363,18 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.Pump", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.Pump", b =>
                 {
-                    b.HasOne("TankTap.Stations.Domain.StationAggregate.Tank", null)
+                    b.HasOne("TankTap.Admistration.Domain.StationAggregate.Tank", null)
                         .WithMany("Pumps")
                         .HasForeignKey("TankId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.Station", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.Station", b =>
                 {
-                    b.OwnsOne("TankTap.Stations.Domain.Distination", "Distination", b1 =>
+                    b.OwnsOne("TankTap.Admistration.Domain.Distination", "Distination", b1 =>
                         {
                             b1.Property<int>("StationId")
                                 .HasColumnType("int");
@@ -390,13 +389,13 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                             b1.HasKey("StationId");
 
-                            b1.ToTable("Stations", "stations");
+                            b1.ToTable("Stations", "adminstration");
 
                             b1.WithOwner()
                                 .HasForeignKey("StationId");
                         });
 
-                    b.OwnsMany("TankTap.Stations.Domain.StationAggregate.POSDevice", "PointOfSales", b1 =>
+                    b.OwnsMany("TankTap.Admistration.Domain.StationAggregate.POSDevice", "PointOfSales", b1 =>
                         {
                             b1.Property<int>("StationId")
                                 .HasColumnType("int");
@@ -422,9 +421,9 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                             b1.HasIndex("PointOfSaleTypeId");
 
-                            b1.ToTable("StationPointOfSales", "stations");
+                            b1.ToTable("StationPointOfSales", "adminstration");
 
-                            b1.HasOne("TankTap.Stations.Domain.PointOfSaleTypeAggregate.PointOfSaleType", "Type")
+                            b1.HasOne("TankTap.Admistration.Domain.PointOfSaleTypeAggregate.PointOfSaleType", "Type")
                                 .WithMany()
                                 .HasForeignKey("PointOfSaleTypeId")
                                 .OnDelete(DeleteBehavior.NoAction)
@@ -436,7 +435,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                             b1.Navigation("Type");
                         });
 
-                    b.OwnsOne("TankTap.Stations.Domain.StationAggregate.StationAddress", "Address", b1 =>
+                    b.OwnsOne("TankTap.Admistration.Domain.StationAggregate.StationAddress", "Address", b1 =>
                         {
                             b1.Property<int>("StationId")
                                 .HasColumnType("int");
@@ -453,9 +452,9 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
                             b1.HasIndex("CityId");
 
-                            b1.ToTable("Stations", "stations");
+                            b1.ToTable("Stations", "adminstration");
 
-                            b1.HasOne("TankTap.Stations.Domain.CityAggregate.City", "City")
+                            b1.HasOne("TankTap.Admistration.Domain.CityAggregate.City", "City")
                                 .WithMany()
                                 .HasForeignKey("CityId")
                                 .OnDelete(DeleteBehavior.NoAction)
@@ -477,15 +476,15 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                     b.Navigation("PointOfSales");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.StationProduct", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.StationProduct", b =>
                 {
-                    b.HasOne("TankTap.Stations.Domain.ProductAggregate.Product", "Product")
+                    b.HasOne("TankTap.Admistration.Domain.ProductAggregate.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("TankTap.Stations.Domain.StationAggregate.Station", null)
+                    b.HasOne("TankTap.Admistration.Domain.StationAggregate.Station", null)
                         .WithMany("StationProducts")
                         .HasForeignKey("StationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -494,15 +493,15 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.Tank", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.Tank", b =>
                 {
-                    b.HasOne("TankTap.Stations.Domain.ProductAggregate.Product", "Product")
+                    b.HasOne("TankTap.Admistration.Domain.ProductAggregate.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("TankTap.Stations.Domain.StationAggregate.Station", null)
+                    b.HasOne("TankTap.Admistration.Domain.StationAggregate.Station", null)
                         .WithMany("Tanks")
                         .HasForeignKey("StationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -511,19 +510,19 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.RegionAggregate.Region", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.RegionAggregate.Region", b =>
                 {
                     b.Navigation("Cities");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.Station", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.Station", b =>
                 {
                     b.Navigation("StationProducts");
 
                     b.Navigation("Tanks");
                 });
 
-            modelBuilder.Entity("TankTap.Stations.Domain.StationAggregate.Tank", b =>
+            modelBuilder.Entity("TankTap.Admistration.Domain.StationAggregate.Tank", b =>
                 {
                     b.Navigation("Pumps");
                 });

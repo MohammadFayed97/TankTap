@@ -10,7 +10,7 @@ using TankTap.Admistration.Infrastructure.Persistence;
 namespace TankTap.Admistration.Infrastructure.Migrations
 {
     [DbContext(typeof(AdminstartionContext))]
-    partial class StationsContextModelSnapshot : ModelSnapshot
+    partial class AdminstartionContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -206,7 +206,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("TankTap.Admistration.Domain.LocalizedName", "Name", b1 =>
+                    b.OwnsOne("TankTap.SharedKernel.Domain.LocalizedName", "Name", b1 =>
                         {
                             b1.Property<int>("CityId")
                                 .HasColumnType("int");
@@ -245,7 +245,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             modelBuilder.Entity("TankTap.Admistration.Domain.PointOfSaleTypeAggregate.PointOfSaleType", b =>
                 {
-                    b.OwnsOne("TankTap.Admistration.Domain.LocalizedName", "Name", b1 =>
+                    b.OwnsOne("TankTap.SharedKernel.Domain.LocalizedName", "Name", b1 =>
                         {
                             b1.Property<int>("PointOfSaleTypeId")
                                 .HasColumnType("int");
@@ -284,7 +284,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             modelBuilder.Entity("TankTap.Admistration.Domain.ProductAggregate.Product", b =>
                 {
-                    b.OwnsOne("TankTap.Admistration.Domain.LocalizedName", "Name", b1 =>
+                    b.OwnsOne("TankTap.SharedKernel.Domain.LocalizedName", "Name", b1 =>
                         {
                             b1.Property<int>("ProductId")
                                 .HasColumnType("int");
@@ -323,7 +323,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             modelBuilder.Entity("TankTap.Admistration.Domain.RegionAggregate.Region", b =>
                 {
-                    b.OwnsOne("TankTap.Admistration.Domain.LocalizedName", "Name", b1 =>
+                    b.OwnsOne("TankTap.SharedKernel.Domain.LocalizedName", "Name", b1 =>
                         {
                             b1.Property<int>("RegionId")
                                 .HasColumnType("int");

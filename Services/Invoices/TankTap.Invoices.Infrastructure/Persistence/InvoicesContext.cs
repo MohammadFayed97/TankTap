@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using TankTap.Invoices.Domain.ProductAggregate;
 using TankTap.Invoices.Domain.StationAggregate;
 using TankTap.Invoices.Infrastructure.Persistence;
@@ -29,14 +28,4 @@ public class InvoicesContext(DbContextOptions<InvoicesContext> options) : DbCont
 
 	public DbSet<Station> Stations { get; set; }
 	public DbSet<Product> Products { get; set; }
-}
-public class InvoicesDbContextFactory() : IDesignTimeDbContextFactory<InvoicesContext>
-{
-	public InvoicesContext CreateDbContext(string[] args)
-	{
-		var optionBuilder = new DbContextOptionsBuilder<InvoicesContext>();
-		optionBuilder.UseSqlServer("data source=(localdb)\\MSSQLLocalDB;initial catalog=TankTap;TrustServerCertificate=True;Trusted_Connection=True;");
-
-		return new InvoicesContext(optionBuilder.Options);
-	}
 }

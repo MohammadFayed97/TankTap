@@ -11,11 +11,11 @@ namespace TankTap.Admistration.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "stations");
+                name: "adminstration");
 
             migrationBuilder.CreateTable(
                 name: "PointOfSaleTypes",
-                schema: "stations",
+                schema: "adminstration",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -32,7 +32,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Products",
-                schema: "stations",
+                schema: "adminstration",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -52,7 +52,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Regions",
-                schema: "stations",
+                schema: "adminstration",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -69,7 +69,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Cities",
-                schema: "stations",
+                schema: "adminstration",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -86,7 +86,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Cities_Regions_RegionId",
                         column: x => x.RegionId,
-                        principalSchema: "stations",
+                        principalSchema: "adminstration",
                         principalTable: "Regions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -94,7 +94,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Stations",
-                schema: "stations",
+                schema: "adminstration",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -113,14 +113,14 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "Stations_Cities_CityId",
                         column: x => x.Address_CityId,
-                        principalSchema: "stations",
+                        principalSchema: "adminstration",
                         principalTable: "Cities",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "StationPointOfSales",
-                schema: "stations",
+                schema: "adminstration",
                 columns: table => new
                 {
                     StationId = table.Column<int>(type: "int", nullable: false),
@@ -136,13 +136,13 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_StationPointOfSales_PointOfSaleTypes_PointOfSaleTypeId",
                         column: x => x.PointOfSaleTypeId,
-                        principalSchema: "stations",
+                        principalSchema: "adminstration",
                         principalTable: "PointOfSaleTypes",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_StationPointOfSales_Stations_StationId",
                         column: x => x.StationId,
-                        principalSchema: "stations",
+                        principalSchema: "adminstration",
                         principalTable: "Stations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -150,7 +150,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "StationProducts",
-                schema: "stations",
+                schema: "adminstration",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -165,14 +165,14 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_StationProducts_Products_ProductId",
                         column: x => x.ProductId,
-                        principalSchema: "stations",
+                        principalSchema: "adminstration",
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_StationProducts_Stations_StationId",
                         column: x => x.StationId,
-                        principalSchema: "stations",
+                        principalSchema: "adminstration",
                         principalTable: "Stations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -180,7 +180,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Tanks",
-                schema: "stations",
+                schema: "adminstration",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -196,13 +196,13 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Tanks_Products_ProductId",
                         column: x => x.ProductId,
-                        principalSchema: "stations",
+                        principalSchema: "adminstration",
                         principalTable: "Products",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Tanks_Stations_StationId",
                         column: x => x.StationId,
-                        principalSchema: "stations",
+                        principalSchema: "adminstration",
                         principalTable: "Stations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -210,7 +210,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Pumps",
-                schema: "stations",
+                schema: "adminstration",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -225,7 +225,7 @@ namespace TankTap.Admistration.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Pumps_Tanks_TankId",
                         column: x => x.TankId,
-                        principalSchema: "stations",
+                        principalSchema: "adminstration",
                         principalTable: "Tanks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -233,49 +233,49 @@ namespace TankTap.Admistration.Infrastructure.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_RegionId",
-                schema: "stations",
+                schema: "adminstration",
                 table: "Cities",
                 column: "RegionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pumps_TankId",
-                schema: "stations",
+                schema: "adminstration",
                 table: "Pumps",
                 column: "TankId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StationPointOfSales_PointOfSaleTypeId",
-                schema: "stations",
+                schema: "adminstration",
                 table: "StationPointOfSales",
                 column: "PointOfSaleTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StationProducts_ProductId",
-                schema: "stations",
+                schema: "adminstration",
                 table: "StationProducts",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StationProducts_StationId",
-                schema: "stations",
+                schema: "adminstration",
                 table: "StationProducts",
                 column: "StationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stations_Address_CityId",
-                schema: "stations",
+                schema: "adminstration",
                 table: "Stations",
                 column: "Address_CityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tanks_ProductId",
-                schema: "stations",
+                schema: "adminstration",
                 table: "Tanks",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tanks_StationId",
-                schema: "stations",
+                schema: "adminstration",
                 table: "Tanks",
                 column: "StationId");
         }
@@ -285,39 +285,39 @@ namespace TankTap.Admistration.Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Pumps",
-                schema: "stations");
+                schema: "adminstration");
 
             migrationBuilder.DropTable(
                 name: "StationPointOfSales",
-                schema: "stations");
+                schema: "adminstration");
 
             migrationBuilder.DropTable(
                 name: "StationProducts",
-                schema: "stations");
+                schema: "adminstration");
 
             migrationBuilder.DropTable(
                 name: "Tanks",
-                schema: "stations");
+                schema: "adminstration");
 
             migrationBuilder.DropTable(
                 name: "PointOfSaleTypes",
-                schema: "stations");
+                schema: "adminstration");
 
             migrationBuilder.DropTable(
                 name: "Products",
-                schema: "stations");
+                schema: "adminstration");
 
             migrationBuilder.DropTable(
                 name: "Stations",
-                schema: "stations");
+                schema: "adminstration");
 
             migrationBuilder.DropTable(
                 name: "Cities",
-                schema: "stations");
+                schema: "adminstration");
 
             migrationBuilder.DropTable(
                 name: "Regions",
-                schema: "stations");
+                schema: "adminstration");
         }
     }
 }

@@ -11,8 +11,8 @@ using TankTap.Invoices.Infrastructure;
 namespace TankTap.Invoices.Infrastructure.Migrations
 {
     [DbContext(typeof(InvoicesContext))]
-    [Migration("20240818015645_Init2")]
-    partial class Init2
+    [Migration("20240818032125_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
